@@ -8,11 +8,7 @@ import lombok.Setter;
 import lombok.ToString;
 import lombok.EqualsAndHashCode;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Column;
+import javax.persistence.*;
 
 import java.io.Serializable;
 
@@ -32,5 +28,8 @@ public class Consumer implements Serializable {
 
     @Column(nullable = false,unique = true)
     private String username;
+
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, targetEntity = User.class)
+    private User user;
 
 }
